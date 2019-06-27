@@ -35,7 +35,7 @@
 	<script type='text/javascript' src='<?php echo base_url(); ?>js/circles.js'></script>
 	<script type='text/javascript' src='<?php echo base_url(); ?>js/dropdown.js'></script>
 	<script type='text/javascript' src="<?php echo base_url();?>js/angularservice.js"></script>
-    <!--script type='text/javascript' src="<?php echo base_url();?>js/angularcontroller.js"></script-->
+    <script type='text/javascript' src="<?php echo base_url();?>js/angularcontroller.js"></script>
 
 </head>
 
@@ -358,7 +358,7 @@
 			<!-- End Sidebar -->
 		
 			<div class="main-panel" ng-app="myForm">
-					<div class="content" ng-controller="FormValidation as ctrl">
+					<div class="content" ng-controller="formValidation as ctrl">
 					<form ng-submit="ctrl.submit()" method="POST" name='frmCustomer' style="width: 100%;">
 						<div class="panel-header bg-primary-gradient">
 							<div class="page-inner py-5">
@@ -405,7 +405,7 @@
 													<div class="form-group">
 														<label for="property" >Property</label>
 														<select  id="property"
-														ng-model="selectedp" 
+														ng-model="ctrl.customer.selectedp" 
 														ng-init="selectedp = names[0]" 
 														ng-options="item for item in names"></select>
 													</div>
@@ -425,7 +425,7 @@
 													<input id="in"
 													class="form-control"
 													type="date" 
-													ng-model="customer.checkIn"
+													ng-model="ctrl.customer.checkIn"
 													name="datein" 
 													ng-required="true"/><br>
 													</div>
@@ -440,7 +440,7 @@
 													<input id="out" 
 													class="form-control"
 													type="date" 
-													ng-model="customer.checkOut"
+													ng-model="ctrl.customer.checkOut"
 													name="dateout" 
 													ng-required="true"/><br>
 													</div>
@@ -449,7 +449,7 @@
 												<div class="form-group">
 													<input type="number"
 													class="form-control"
-													ng-model="ctrl.customer.guestcount"
+													ng-model="ctrl.customer.guest_count"
 													placeholder="Guest" 
 													pattern="[0-9]{1,12}" 
 													ng-required="true" /><br>
@@ -458,7 +458,7 @@
 													<label for="gateway" >Gateway</label>
 													<select id ="gateway"
 													ng-init="selectedName = gateway[0]" 
-													ng-model="selectedName" 
+													ng-model="ctrl.customer.selectedName" 
 													ng-change="change()"
 													ng-options="x for x in gateway"></select>
 												</div> 
@@ -472,35 +472,36 @@
 												class="form-group">
 													<input type="text"
 													class="form-control"
+													ng-model="ctrl.customer.booking_id" 
 													placeholder="Booking Id"
 													pattern="[A-za-z0-9]{1,15}"
-													ng-required="true"/>
+													/>
 												</div>
 												<div class="form-group">
 													<input type="number"
 													class="form-control"
 													placeholder="Price" 
-													pattern="[0-9]" 
+													ng-model="ctrl.customer.price" 
 													ng-required="true"/>
 												</div>
 												<div class="form-group">
 													<label for="nationality" >Nationality</label>
 													<select id ="nationality"
 													ng-init="selectedN = nationality[0]"
-													ng-model="selectedN" 
+													ng-model="ctrl.customer.selectedN" 
 													ng-options="x for x in nationality"></select>
 												</div>
 												<div class="form-group">
 													<input type="text"
 													class="form-control"
-													ng-model="id.code"
+													ng-model="ctrl.customer.id_num"
 													placeholder="ID Num"
 													ng-required="true"/>
 												</div>
 													<div class="form-group">
 													<input type="text"
 													class="form-control"
-													ng-model="id.type"
+													ng-model="ctrl.customer.id_type"
 													placeholder="ID type"
 													ng-required="true"/>
 												</div>
@@ -513,14 +514,14 @@
 										    <div class="form-group">
 												<textarea type="text" 
 												class="form-control"
-												ng-model="id.address"
+												ng-model="ctrl.customer.id_address"
 												placeholder="Address" 
 												ng-required="true"></textarea>
 											</div>
 											<div class="form-group">
 												<input type="tel" 
 												class="form-control"
-												ng-model="id.contact"
+												ng-model="ctrl.customer.id_contact"
 												placeholder="Contact" 
 												ng-required="true"/>
 											</div>

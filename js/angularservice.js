@@ -5,15 +5,15 @@ angular.module('myForm').factory('angularservice', ['$http', '$q', function($htt
     var REST_SERVICE_URI = 'http://localhost/hm/index.php/';
  
     var factory = {
-        createGuest: createGuest,
+        createBooking: createBooking,
     };
  
     return factory;
  
  
-    function createGuest(guest) {
+    function createBooking(guest) {
         var deferred = $q.defer();
-        $http.post(REST_SERVICE_URI+'restpostcontroller/add_guest', guest)
+        $http.post(REST_SERVICE_URI+'restpostcontroller/add_booking', guest)
             .then(
             function (response) {
                 deferred.resolve(response.data);

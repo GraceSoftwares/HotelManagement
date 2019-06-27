@@ -1,25 +1,24 @@
 'use strict';
  
-angular.module('myForm').controller('FormValidation',['$scope', 'angularservice', function($scope, angularservice) {
+var app = angular.module('myForm').controller('formValidation',['$scope', 'angularservice', function($scope, angularservice) { 
 
 
     var self = this;
-    self.guest = {  guest_count:'' };
+    self.customer = {  name:'',contact:'', email:'', checkIn:'', checkOut:'', guest_count:'', booking_id:'', price:'', id_num:'' , id_type:'', id_address:'',id_contact:''};
     self.submit = submit;
 
-
-    function createGuest(guest){
-    	angularservice.createGuest(guest)
+    function createBooking(guest){
+    	angularservice.createBooking(guest)
             .then(
-            function(errResponse){
+            function(){
                 console.error('Error while creating contact');
             }
         );
     }
  
     function submit() {
-        console.log('Saving New Contact', self.guest);
-        createGuest(self.guest);
+        console.log('Saving New Contact', self.customer);
+        createBooking(self.customer);
     }
  
  

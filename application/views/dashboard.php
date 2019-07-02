@@ -4,37 +4,23 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<title>Dashboard</title>
 	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
-	<link rel="icon" href="../assets/img/icon.ico" type="image/x-icon"/>
-	<link rel="stylesheet" href="../assets/css/fonts.min.css" media="all">
     <!-- Fonts and icons -->
-
-	<script>
-		WebFont.load({
-			google: {"families":["Lato:300,400,700,900"]},
-			custom: {"families":["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ['../assets/css/fonts.min.css']},
-			active: function() {
-				sessionStorage.fonts = true;
-			}
-		});
-	</script>
 
 	<!-- CSS Files -->
 	<link rel="stylesheet" href="<?php echo base_url();?>css/bootstrap.min.css">
 	<link rel="stylesheet" href="<?php echo base_url();?>css/atlantis.css">   
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.js"></script>
 	<script src="<?php echo base_url(); ?>js/plugin/webfont/webfont.min.js"></script>
 	<script src="<?php echo base_url(); ?>js/core/jquery.3.2.1.min.js"></script>
     <script src="<?php echo base_url(); ?>js/core/popper.min.js"></script>
     <script src="<?php echo base_url(); ?>js/core/bootstrap.min.js"></script>
 
-	<script src="<?php echo base_url(); ?>js/plugin/chart.js/chart.min.js"></script>
+	<script src="<?php echo base_url(); ?>js/angular.min.js"></script>
+	<!--script type='text/javascript' src='<?php echo base_url(); ?>js/dropdown.js'></script-->
 	<script src="<?php echo base_url(); ?>js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
     <script src="<?php echo base_url(); ?>js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
 	
-	<script type='text/javascript' src='<?php echo base_url(); ?>js/circles.js'></script>
-	<script type='text/javascript' src='<?php echo base_url(); ?>js/abstract.js'></script>
 </head>
 <body>
 	<div class="wrapper">
@@ -308,8 +294,8 @@
 								<div class="info">
 									<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
 										<span>
-											Hizrian
-											<span class="user-level">Administrator</span>
+											Name
+											<span class="user-level">Receptionist</span>
 											<span class="caret"></span>
 										</span>
 									</a>
@@ -336,15 +322,24 @@
 									</div>
 								</div>
 							</div>
+							
 							<ul class="nav nav-primary">
-								<li class="nav-section">
-									<span class="sidebar-mini-icon">
-										<i class="fa fa-ellipsis"></i>
-									</span>
-									<h4 class="text-section">Components</h4>
+								<li class="nav-item" id="dashboard">
+									<a href="#">
+										<i class="fa fa-dashboard"></i>
+										<p>Dashboard</p>
+										<i class="fa fa-caret-right" style="margin-left: auto;margin-right: 10px;"></i>
+									</a>
+								</li>
+								<li class="nav-item" id="add">
+									<a href="#">
+										<i class="fa fa-user"></i>
+										<p>Add Customer</p>
+										<i class="fa fa-caret-right" style="margin-left: auto;margin-right: 10px;"></i>
+									</a>
 								</li>
 								<li class="mx-4 mt-2">
-									<a href="http://themekita.com/atlantis-bootstrap-dashboard.html" class="btn btn-primary btn-block"><span class="btn-label mr-2"> <i class="fa fa-sign-out"></i> </span>Sign Out</a> 
+									<a href="#" class="btn btn-primary btn-block"><span class="btn-label mr-2"> <i class="fa fa-sign-out"></i> </span>Sign Out</a> 
 								</li>
 							</ul>
 						</div>
@@ -352,165 +347,71 @@
 			</div>
 			<!-- End Sidebar -->
 
-			<div class="main-panel" >
-					<div class="content">
-							<div class="panel-header bg-primary-gradient">
-								<div class="page-inner py-5">
-									<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
-										<div>
-											<h2 class="text-white pb-2 fw-bold">Dashboard</h2>
-											<h5 class="text-white op-7 mb-2">Free Bootstrap 4 Admin Dashboard</h5>
-										</div>
-										<div class="ml-md-auto py-2 py-md-0">
-												<a href="#" class="btn btn-white btn-border btn-round mr-2">Reports</a>
-												<a href="<?php echo site_url('Controller/formPage') ?>" class="btn btn-secondary btn-round">Add Customer</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="page-inner mt--5">
-									<div class="row-card-no-pd">
-										<div class="col-md-12">
-											<div class="card text-center">
-												<div class="card-header">
-													<ul class="nav nav-pills nav-primary card-header-pills">
-														<li class="nav-item">
-															<a class="nav-link active" href="#">Today's Bookings</a>
-														</li>
-														<li class="nav-item">
-															<a class="nav-link" href="#">Today's Checkin</a>
-														</li>
-														<li class="nav-item">
-															<a class="nav-link disabled" href="#">Today's Checkout</a>
-														</li>
-													</ul>
-												</div>
-												<div class="card-body">
-													<h5 class="card-title">Special title treatment</h5>
-													<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-												</div>
-											</div>
-										</div>
-									</div>	
-									<div class="row-card-no-pd">
-										<div class="col-md-12">
-											<div class="card text-center">
-												<div class="card-header">
-													<h4 class="card-title">Customer Flow</h4>
-												</div>
-												<div class="card-body">
-													<div id="chart-container">
-														<canvas id="lineChart" style="display: block; height: 300px" class="chartjs-render-monitor"></canvas>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="row row-card-no-pd">
-										<div class="col-md-12">
-											<div class="card text-center">
-												<div class="card-header">
-													<h4 class="card-title">Vaccant Rooms</h4>
-												</div>
-												<div class="card-body">
-													<div id="vaccantrooms"></div>
-												</div>
-											</div>
-										</div>
-									</div>
-							</div>
-						</div>
-						<footer class="footer">
-								<div class="container-fluid">
-									<nav class="pull-left">
-										<ul class="nav">
-											<li class="nav-item">
-												<a class="nav-link" href="https://www.themekita.com">
-													ThemeKita
-												</a>
-											</li>
-											<li class="nav-item">
-												<a class="nav-link" href="#">
-													Help
-												</a>
-											</li>
-											<li class="nav-item">
-												<a class="nav-link" href="#">
-													Licenses
-												</a>
-											</li>
-										</ul>
-									</nav>
-									<div class="copyright ml-auto">
-										2018, made with <i class="fa fa-heart heart text-danger"></i> by <a href="https://www.themekita.com">ThemeKita</a>
-									</div>				
-								</div>
-						</footer>
-		    </div>
+		<div class="main-panel"  >
+			<div class="content" id='content'  >
+			</div>
+			<footer class="footer">
+				<div class="container-fluid">
+					<nav class="pull-left">
+						<ul class="nav">
+							<li class="nav-item">
+								<a class="nav-link" href="https://www.themekita.com">
+									ThemeKita
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">
+									Help
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">
+									Licenses
+								</a>
+							</li>
+						</ul>
+					</nav>
+					<div class="copyright ml-auto">
+						2018, made with <i class="fa fa-heart heart text-danger"></i> by <a href="https://www.themekita.com">ThemeKita</a>
+					</div>				
+				</div>
+			</footer>
+		</div>
 	</div>		
 </body>
 <script>
-	
 
-var lineChart = document.getElementById('lineChart').getContext('2d');
+$(document).ready(function(){
+	$('#content').load('<?php echo site_url('Controller/dashboard') ?>');
 
-var myLineChart = new Chart(lineChart, {
-	type: 'line',
-	data: {
-		labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-		datasets: [{
-			label: "Active Users",
-			borderColor: "#1d7af3",
-			pointBorderColor: "#FFF",
-			pointBackgroundColor: "#1d7af3",
-			pointBorderWidth: 2,
-			pointHoverRadius: 4,
-			pointHoverBorderWidth: 1,
-			pointRadius: 4,
-			backgroundColor: 'transparent',
-			fill: true,
-			borderWidth: 2,
-			data: [542, 480, 430, 550, 530, 453, 380, 434, 568, 610, 700, 900]
-		}]
-	},
-	options : {
-		responsive: true,
-		maintainAspectRatio: false,
-		legend: {
-			position: 'bottom',
-			labels : {
-				padding: 10,
-				fontColor: '#1d7af3',
-			}
-		},
-		tooltips: {
-			bodySpacing: 4,
-			mode:"nearest",
-			intersect: 0,
-			position:"nearest",
-			xPadding:10,
-			yPadding:10,
-			caretPadding:10
-		},
-		layout:{
-			padding:{left:15,right:15,top:15,bottom:15}
-		}
-	}
-});
-
-	var vr = Circles.create({
-	id:           'vaccantrooms',
-	radius:       75,
-	value:        80,
-	maxValue:     100,
-	width:        7,
-	text:         function(value){return value + '%';},
-	colors:       ['#eee', '#177dff'],
-	duration:     400,
-	wrpClass:     'circles-wrp',
-	textClass:    'circles-text',
-	styleWrapper: true,
-	styleText:    true
+	$('#dashboard').click(function(){
+		$('#content').load('<?php echo site_url('Controller/dashboard') ?>');
 	});
+
+	$('#add').click(function(){
+		$('#content').load('<?php echo site_url('Controller/regform') ?>');
+	});
+	//$('#b').load('<?php echo site_url('Controller/todayBooking') ?>');
+
+  /*$("#tbo").click(function(){
+	$("#tbo").addClass("active");
+	$("#tci").removeClass("active");
+	$("#tco").removeClass("active");
+	$('#b').load('<?php echo site_url('Controller/todayBooking') ?>');
+  });
+  $("#tci").click(function(){
+	$("#tci").addClass("active");
+	$("#tbo").removeClass("active");
+	$("#tco").removeClass("active");
+    $('#b').load('<?php echo site_url('Controller/todayCheckin') ?>');
+  });
+  $("#tco").click(function(){
+	$("#tco").addClass("active");
+	$("#tci").removeClass("active");
+	$("#tbo").removeClass("active");
+    $('#b').load('<?php echo site_url('Controller/todayCheckout') ?>');
+  });*/
+});
+	
 </script>
 </html>

@@ -1,30 +1,97 @@
-<?php
+<div class="table-responsive">
+	<table id="booking-datatables" class="display table table-striped table-hover" cellspacing="0" width="100%">
+		<thead>
+            <th class="sorting_asc" 
+            tabindex="0" 
+            aria-controls="basic-datatables" 
+            rowspan="1" 
+            colspan="1" 
+            aria-label="ID: activate to sort column descending" 
+            aria-sort="ascending" 
+            style="width: 67px;">ID</th>
 
-echo '<table border="1" cellspacing="2" cellpadding="2" width= "100%" margin= "20px auto" table-layout= "auto"> 
-      <tr> 
-          <td> <font face="Arial">Booking ID</font> </td> 
-          <td> <font face="Arial">Booking date</font> </td> 
-          <td> <font face="Arial">Total Nights</font> </td> 
-          <td> <font face="Arial">Total Price</font> </td> 
-          <td> <font face="Arial">Booked By</font> </td> 
-      </tr>';
+            <th class="sorting" 
+            tabindex="0" 
+            aria-controls="basic-datatables" 
+            rowspan="1" 
+            colspan="1" 
+            aria-label="Name: activate to sort column ascending" 
+            style="width: 56px;">Name</th>
 
-foreach($results as $data) {
-    $field1name = $data->id;
-    $field2name = $data->bookingdate;
-    $field3name = $data->totalnights;
-    $field4name = $data->totalprice;
-    $field5name = $data->bookedby; 
- 
-    echo '<tr> 
-                <td>'.$field1name.'</td> 
-                <td>'.$field2name.'</td> 
-                <td>'.$field3name.'</td> 
-                <td>'.$field4name.'</td> 
-                <td>'.$field5name.'</td> 
-            </tr>';
-//echo $data->id . " - " . $data->phone . "<br>";
-}
+            <th class="sorting" 
+            tabindex="0" 
+            aria-controls="basic-datatables" 
+            rowspan="1" 
+            colspan="1" 
+            aria-label="Days: activate to sort column ascending" 
+            style="width: 56px;">Days</th>
 
-?>
-   <p><?php echo $links; ?></p>
+            <th class="sorting" 
+            tabindex="0" 
+            aria-controls="basic-datatables" 
+            rowspan="1" 
+            colspan="1" 
+            aria-label="Price: activate to sort column ascending" 
+            style="width: 56px;">Price</th>
+
+            <th class="sorting" 
+            tabindex="0" 
+            aria-controls="basic-datatables" 
+            rowspan="1" 
+            colspan="1" 
+            aria-label="OTA: activate to sort column ascending" 
+            style="width: 56px;">OTA</th>
+
+            <th class="sorting" 
+            tabindex="0" 
+            aria-controls="basic-datatables" 
+            rowspan="1" 
+            colspan="1" 
+            aria-label="Poperty: activate to sort column ascending" 
+            style="width: 56px;">Property</th>
+
+            <th class="sorting" 
+            tabindex="0" 
+            aria-controls="basic-datatables" 
+            rowspan="1" 
+            colspan="1" 
+            aria-label="Guest: activate to sort column ascending" 
+            style="width: 56px;">Guest</th>
+
+            <th class="sorting" 
+            tabindex="0" 
+            aria-controls="basic-datatables" 
+            rowspan="1" 
+            colspan="1" 
+            aria-label="Early: activate to sort column ascending" 
+            style="width: 56px;">Early(Chargable)</th>
+
+		</thead>
+		<tfoot>
+		</tfoot>
+		<tbody>
+            <?php
+                if(!$results){
+                    echo 'No Results Found';
+                }
+                else{
+                    foreach($results as $data) {
+                        echo '<tr role="row" >
+                            <td class="sorting_1">'.anchor('Controller/presenter/'.$data->id.'', ''.$data->id.'').'</td>
+                            <td>'.$data->name.'</td>
+                            <td>'.$data->totalnights.'</td>
+                            <td>'.$data->totalprice.'</td>
+                            <td>'.$data->gateway.'</td>
+                            <td>'.$data->property.'</td>
+                            <td>'.$data->noofguest.'</td>
+                            <td> 50 </td>
+                            </tr>';
+                    }
+                }
+            ?>  
+		</tbody>
+	</table>
+</div>
+<script>
+    $('#booking-datatables').DataTable();
+</script>

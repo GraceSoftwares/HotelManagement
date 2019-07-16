@@ -1,5 +1,5 @@
 <div class="table-responsive">
-	<table id="checkin-datatables" class="display table table-striped table-hover" cellspacing="0" width="100%">
+	<table id="ongoing" class="display table table-striped table-hover" cellspacing="0" width="100%">
 		<thead>
             <th class="sorting_asc" 
             tabindex="0" 
@@ -8,7 +8,7 @@
             colspan="1" 
             aria-label="ID: activate to sort column descending" 
             aria-sort="ascending" 
-            style="width: 67px;">ID</th>
+            style="width: 60px;">ID</th>
 
             <th class="sorting" 
             tabindex="0" 
@@ -24,7 +24,7 @@
             rowspan="1" 
             colspan="1" 
             aria-label="Days: activate to sort column ascending" 
-            style="width: 56px;">Days</th>
+            style="width: 30px;">Days</th>
 
             <th class="sorting" 
             tabindex="0" 
@@ -32,7 +32,7 @@
             rowspan="1" 
             colspan="1" 
             aria-label="Price: activate to sort column ascending" 
-            style="width: 56px;">Price</th>
+            style="width: 40px;">Price</th>
 
             <th class="sorting" 
             tabindex="0" 
@@ -40,7 +40,7 @@
             rowspan="1" 
             colspan="1" 
             aria-label="OTA: activate to sort column ascending" 
-            style="width: 56px;">OTA</th>
+            style="width: 30px;">OTA</th>
 
             <th class="sorting" 
             tabindex="0" 
@@ -56,7 +56,7 @@
             rowspan="1" 
             colspan="1" 
             aria-label="Guest: activate to sort column ascending" 
-            style="width: 56px;">Guest</th>
+            style="width: 30px;">Guest</th>
 
             <th class="sorting" 
             tabindex="0" 
@@ -77,14 +77,14 @@
                 else{
                     foreach($results as $data) {
                         echo '<tr role="row" >
-                        <td class="sorting_1">'.anchor('Controller/presenter/'.$data->id.'', ''.$data->id.'').'</td>
+                            <td class="sorting_1">'.anchor('Controller/presenter/'.$data->id.'', ''.$data->id.'').'</td>
                             <td>'.$data->name.'</td>
                             <td>'.$data->totalnights.'</td>
                             <td>'.$data->totalprice.'</td>
                             <td>'.$data->gateway.'</td>
                             <td>'.$data->property.'</td>
                             <td>'.$data->noofguest.'</td>
-                            <td> 50 </td>
+                            <td>'.$data->additionalprice.'</td>
                             </tr>';
                     }
                 }
@@ -92,6 +92,7 @@
 		</tbody>
 	</table>
 </div>
+
 <script>
-    $('#checkin-datatables').DataTable();
+    $('#ongoing').DataTable();
 </script>

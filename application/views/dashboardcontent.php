@@ -1,7 +1,5 @@
 <html lang= "en">
 <head>
-	<script src="<?php echo base_url(); ?>js/plugin/chart.js/chart.min.js"></script>
-	<script type='text/javascript' src='<?php echo base_url(); ?>js/circles.js'></script>
 </head>
 <body>
 <div class="panel-header bg-primary-gradient">
@@ -11,37 +9,40 @@
 				<h2 class="text-white pb-2 fw-bold">Dashboard</h2>
 				<h5 class="text-white op-7 mb-2">Property Name</h5>
 			</div>
-			<div class="ml-md-auto py-2 py-md-0">
-				<!--a href="#" class="btn btn-white btn-border btn-round mr-2">Reports</a-->
+			<!--div class="ml-md-auto py-2 py-md-0">
 				<a href="#" id="add" class="btn btn-primary btn-round"><span class="btn-label"><i class="fa fa-bar-chart"></i></span>Reports</a>
-			</div>
+			</div-->
 		</div>
 	</div>
 </div>
 <div class="page-inner mt--5">
 	<div class="row-card-no-pd">
 		<div class="col-md-12">
-			<div class="card text-center">
-				<div class="card-header">
-					<ul class="nav nav-pills nav-primary card-header-pills">
+			<div class='card'>
+				<div class="card-body">
+					<ul class="nav nav-pills nav-secondary" id="pills-tab" role="tablist">
 						<li class="nav-item">
-							<a class="nav-link active" href="#" id="tbo">Today's Bookings</a>
+							<a class="nav-link active" id="pills-booking-tab" data-toggle="pill" href="#pills-booking" role="tab" aria-controls="pills-booking" aria-selected="true">Today's Booking</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#" id="tci">Today's Checkin</a>
+							<a class="nav-link" id="pills-checkin-tab" data-toggle="pill" href="#pills-checkin" role="tab" aria-controls="pills-checkin" aria-selected="false">Today's Checkin</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link disabled" href="#" id="tco">Today's Checkout</a>
+							<a class="nav-link" id="pills-checkout-tab" data-toggle="pill" href="#pills-checkout" role="tab" aria-controls="pills-checkout" aria-selected="false">Today's Checkout</a>
 						</li>
 					</ul>
-				</div>
-				<div class="card-body" id="b">
-					<!--h5 class="card-title">Special title treatment</h5>
-					<p class="card-text">With supporting text below as a natural lead-in to additional content.</p-->
+					<div class="tab-content text-center mt-2 mb-3" id="pills-tabContent">
+						<div class="tab-pane fade show active" id="pills-booking" role="tabpanel" aria-labelledby="pills-booking-tab">
+						</div>
+						<div class="tab-pane fade " id="pills-checkin" role="tabpanel" aria-labelledby="pills-checkin-tab">
+						</div>
+						<div class="tab-pane fade " id="pills-checkout" role="tabpanel" aria-labelledby="pills-checkout-tab">
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>	
+	</div>		
 	<div class="row-card-no-pd">
 		<div class="col-md-12">
 			<div class="card text-center">
@@ -72,31 +73,11 @@
 </body>
 <script>
 	$(document).ready(function(){
-		$('#b').load('<?php echo site_url('Controller/bookingtable') ?>');
-
-	$("#tbo").click(function(){
-		$("#tbo").addClass("active");
-		$("#tci").removeClass("active");
-		$("#tco").removeClass("active");
-		$('#b').load('<?php echo site_url('Controller/bookingtable') ?>');
-  	});
-  	$("#tci").click(function(){
-		$("#tci").addClass("active");
-		$("#tbo").removeClass("active");
-		$("#tco").removeClass("active");
-    	$('#b').load('<?php echo site_url('Controller/checkintable') ?>');
-  	});
-  	$("#tco").click(function(){
-		$("#tco").addClass("active");
-		$("#tci").removeClass("active");
-		$("#tbo").removeClass("active");
-    	$('#b').load('<?php echo site_url('Controller/checkouttable') ?>');;
-  	});
-
+		$('#pills-booking').load('<?php echo site_url('Controller/bookingtable') ?>');
+		$('#pills-checkin').load('<?php echo site_url('Controller/checkintable') ?>');
+		$('#pills-checkout').load('<?php echo site_url('Controller/checkouttable') ?>');
 	});
-
 	var lineChart = document.getElementById('lineChart').getContext('2d');
-
 	var myLineChart = new Chart(lineChart, {
 		type: 'line',
 		data: {
@@ -140,7 +121,6 @@
 			}
 		}
 	});
-
 	var vr = Circles.create({
 		id:           'vaccantrooms',
 		radius:       75,

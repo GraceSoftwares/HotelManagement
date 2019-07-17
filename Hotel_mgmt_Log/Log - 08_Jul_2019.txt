@@ -1,0 +1,7 @@
+Add following to dashboard tables
+No.of.days,
+Name,
+Gateway,
+Guest,
+Extra charge,
+Property name.

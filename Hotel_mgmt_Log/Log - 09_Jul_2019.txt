@@ -1,0 +1,6 @@
+no of rooms - add customer
+tax slab - automated add customer
+extra charge - customised - addcustomer
+entry option 
+
+edit/ delete option is only for admin.

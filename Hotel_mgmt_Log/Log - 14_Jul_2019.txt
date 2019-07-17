@@ -1,1 +1,1 @@
-add upcoming, ongoing, completed, tax
+add upcoming, ongoing, completed, tax in reports

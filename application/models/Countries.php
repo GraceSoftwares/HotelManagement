@@ -35,6 +35,21 @@ class Countries extends CI_Model{
         return false;
     }
 
+
+    public function checkout($roomnum){
+        $this->db->from('tablebooking b');
+        $this->db->join('tableguest g','g.guestid=b.guestid');
+        $this->db->join('tableproperty p','p.propertyid=b.propertyid');
+        $qu = '(p.roomno = "'.$roomnum.'" and (status = "out" or status = "in"))';
+        $this->db->where($qu);
+        $queryb = $this->db->get();
+        //$queryc = $this->db->get_where( 'tableproperty', array('propertyid' => $varb) );
+        if($queryb->num_rows() > 0){
+            return $queryb->row();
+        }
+        return false;
+    }
+
     // presenter
     public function cust($id){
         $this->db->from('tablebooking b');
@@ -55,9 +70,10 @@ class Countries extends CI_Model{
         $this->db->join('tableguest g','g.guestid=b.guestid');
         $this->db->join('tableproperty p','p.propertyid=b.propertyid');
         switch($selector){
-            case 'upcoming':$this->db->where('status', 'yet to come');break;
-            case 'ongoing':$this->db->where('(status ="in" or status = "out" )');break;
-            case 'completed':$this->db->where('status','vaccated');break;
+            case 'upcoming':$this->db->where('b.status', 'yet to come');break;
+            case 'ongoing':$this->db->where('(b.status ="in" or status = "out" )');break;
+            case 'completed':$this->db->where('b.status','vaccated');break;
+            default: $this->db->select('*');
         }
         $query = $this->db->get();
         if ($query->num_rows() > 0) {

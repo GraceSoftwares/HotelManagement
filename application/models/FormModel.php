@@ -8,7 +8,7 @@ class FormModel extends CI_Model {
     private $guest = 'tableguest';
     private $property = 'tableproperty';
 
-    function add_booking($id, $guest_id, $property_id, $customer_name, $customer_days, $customer_gateway, $customer_contact, $customer_checkIn, $customer_checkOut, $customer_price){
+    function add_booking($id, $guest_id, $property_id, $customer_name, $customer_gateway, $customer_contact, $customer_checkIn, $customer_checkOut, $customer_extra){
         $data = array(
         'id' => $id, 
         'guestid' => $guest_id, 
@@ -16,8 +16,6 @@ class FormModel extends CI_Model {
         'name' => $customer_name, 
         'checkindate' => $customer_checkIn, 
         'checkoutdate' => $customer_checkOut,
-        'totalnights' => $customer_days,  
-        'totalprice' => $customer_price,
         'gateway' => $customer_gateway, 
         'bookedby' => 'Anonymous', 
         'phone' => $customer_contact, 
@@ -32,16 +30,18 @@ class FormModel extends CI_Model {
         $this->db->insert($this->guest, $data);
     }
 
-    function add_property($property_id, $customer_property, $customer_roomtype, $customer_roomno, $customer_price, $customer_extra, $customer_cgstpct, $customer_cgstamt){
+    function add_property($property_id, $customer_property, $customer_roomtype, $customer_roomno, $customer_price, $customer_extra, $customer_cgstpct, $customer_cgstamt, $customer_days, $customer_totalprice){
         $data = array(
         'propertyid' => $property_id,
         'property'=>$customer_property,
         'roomtype'=>$customer_roomtype,
         'roomno' => $customer_roomno,
-        'price' => $customer_price,
+        'totalnights' => $customer_days,
+        'price' => $customer_price,  
         'additionalprice' => $customer_extra,
         'cgstpct' => $customer_cgstpct,
-        'cgstamt' => $customer_cgstamt
+        'cgstamt' => $customer_cgstamt,
+        'totalprice' => $customer_totalprice
         );
         $this->db->insert($this->property, $data);
     }

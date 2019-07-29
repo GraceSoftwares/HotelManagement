@@ -30,6 +30,9 @@
 						<li class="nav-item">
 							<a class="nav-link" id="pills-completed-tab" data-toggle="pill" href="#pills-completed" role="tab" aria-controls="pills-completed" aria-selected="false">Completed</a>
 						</li>
+						<li class="nav-item">
+							<a class="nav-link" id="pills-tax-tab" data-toggle="pill" href="#pills-tax" role="tab" aria-controls="pills-tax" aria-selected="false">Tax</a>
+						</li>
 					</ul>
 					<div class="tab-content text-center mt-2 mb-3" id="pills-tabContent-reports">
 						<div class="tab-pane fade show active" id="pills-upcoming" role="tabpanel" aria-labelledby="pills-upcoming-tab">
@@ -37,6 +40,8 @@
 						<div class="tab-pane fade " id="pills-ongoing" role="tabpanel" aria-labelledby="pills-ongoing-tab">
 						</div>
 						<div class="tab-pane fade " id="pills-completed" role="tabpanel" aria-labelledby="pills-completed-tab">
+						</div>
+						<div class="tab-pane fade " id="pills-tax" role="tabpanel" aria-labelledby="pills-tax-tab">
 						</div>
 					</div>
 				</div>
@@ -50,6 +55,7 @@
 		$('#pills-upcoming').load('<?php echo site_url('Controller/upcoming') ?>');
 		$('#pills-ongoing').load('<?php echo site_url('Controller/ongoing') ?>');
 		$('#pills-completed').load('<?php echo site_url('Controller/completed') ?>');
+		$('#pills-tax').load('<?php echo site_url('Controller/tax') ?>');
 	});
     //$('#booking-datatables').DataTable();
 </script>

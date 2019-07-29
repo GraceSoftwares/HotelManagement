@@ -1,7 +1,7 @@
 <div class="table-responsive">
-	<table id="ongoing_table" class="display table table-striped table-hover" cellspacing="0" width="100%">
+	<table id="tax_table" class="display table table-striped table-hover" cellspacing="0" width="100%">
 		<thead>
-            <th class="sorting_asc" 
+        <th class="sorting_asc" 
             tabindex="0" 
             aria-controls="basic-datatables" 
             rowspan="1" 
@@ -23,8 +23,40 @@
             aria-controls="basic-datatables" 
             rowspan="1" 
             colspan="1" 
-            aria-label="Days: activate to sort column ascending" 
-            style="width: 30px;">Days</th>
+            aria-label="cgstpct: activate to sort column ascending" 
+            style="width: 30px;">CGST(%)</th>
+
+            <th class="sorting" 
+            tabindex="0" 
+            aria-controls="basic-datatables" 
+            rowspan="1" 
+            colspan="1" 
+            aria-label="cgstamt: activate to sort column ascending" 
+            style="width: 40px;">CGST</th>
+
+            <th class="sorting" 
+            tabindex="0" 
+            aria-controls="basic-datatables" 
+            rowspan="1" 
+            colspan="1" 
+            aria-label="sgstpct: activate to sort column ascending" 
+            style="width: 30px;">SGST(%)</th>
+
+            <th class="sorting" 
+            tabindex="0" 
+            aria-controls="basic-datatables" 
+            rowspan="1" 
+            colspan="1" 
+            aria-label="sgstamt: activate to sort column ascending" 
+            style="width: 56px;">SGST</th>
+
+            <th class="sorting" 
+            tabindex="0" 
+            aria-controls="basic-datatables" 
+            rowspan="1" 
+            colspan="1" 
+            aria-label="Extra: activate to sort column ascending" 
+            style="width: 30px;">Additional Cost</th>
 
             <th class="sorting" 
             tabindex="0" 
@@ -32,47 +64,7 @@
             rowspan="1" 
             colspan="1" 
             aria-label="Price: activate to sort column ascending" 
-            style="width: 40px;">Price</th>
-
-            <th class="sorting" 
-            tabindex="0" 
-            aria-controls="basic-datatables" 
-            rowspan="1" 
-            colspan="1" 
-            aria-label="OTA: activate to sort column ascending" 
-            style="width: 30px;">OTA</th>
-
-            <th class="sorting" 
-            tabindex="0" 
-            aria-controls="basic-datatables" 
-            rowspan="1" 
-            colspan="1" 
-            aria-label="Poperty: activate to sort column ascending" 
-            style="width: 56px;">Property</th>
-
-            <th class="sorting" 
-            tabindex="0" 
-            aria-controls="basic-datatables" 
-            rowspan="1" 
-            colspan="1" 
-            aria-label="Guest: activate to sort column ascending" 
-            style="width: 30px;">Guest</th>
-
-            <th class="sorting" 
-            tabindex="0" 
-            aria-controls="basic-datatables" 
-            rowspan="1" 
-            colspan="1" 
-            aria-label="Early: activate to sort column ascending" 
-            style="width: 56px;">Early(Chargable)</th>
-
-            <th class="sorting" 
-            tabindex="0" 
-            aria-controls="basic-datatables" 
-            rowspan="1" 
-            colspan="1" 
-            aria-label="Early: activate to sort column ascending" 
-            style="width: 35px;">Status</th>
+            style="width: 30px;">Total Price</th>
 
 		</thead>
 		<tfoot>
@@ -80,19 +72,19 @@
 		<tbody>
             <?php
                 if(!$results){
+                    echo 'No Results Found';
                 }
                 else{
                     foreach($results as $data) {
                         echo '<tr role="row" >
                             <td class="sorting_1">'.anchor('Controller/presenter/'.$data->id.'', ''.$data->id.'').'</td>
                             <td>'.$data->name.'</td>
-                            <td>'.$data->totalnights.'</td>
-                            <td>'.$data->totalprice.'</td>
-                            <td>'.$data->gateway.'</td>
-                            <td>'.$data->property.'</td>
-                            <td>'.$data->noofguest.'</td>
+                            <td>'.$data->cgstpct.'</td>
+                            <td>'.$data->cgstamt.'</td>
+                            <td>'.$data->sgstpct.'</td>
+                            <td>'.$data->sgstamt.'</td>
                             <td>'.$data->additionalprice.'</td>
-                            <td>'.$data->status.'</td>
+                            <td>'.$data->price.'</td>
                             </tr>';
                     }
                 }
@@ -102,5 +94,5 @@
 </div>
 
 <script>
-    $('#ongoing_table').DataTable();
+    $('#tax_table').DataTable();
 </script>

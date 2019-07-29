@@ -1,12 +1,7 @@
 <html lang="en">
 <head>
-	<script src='<?php echo base_url(); ?>assets/js/core/angular.min.js'></script>
-	<script type='text/javascript' src='<?php echo base_url(); ?>assets/js/dropdown.js'></script>
-	<script type='text/javascript' src="<?php echo base_url(); ?>assets/js/angularservice.js"></script>
 </head>
 <body>
-<div ng-app="myForm">
-<div ng-controller="formValidation as ctrl">
 <form ng-submit="ctrl.submit()" method="POST" name='frmCustomer' style="width: 100%;">
 	<div class="panel-header bg-primary-gradient">
 		<div class="page-inner py-5">
@@ -139,11 +134,10 @@
 									<div class="form-group">
 										<input type="number"
 										class="form-control"
-										placeholder="Price" 
-										name = "price"
-										ng-model="ctrl.customer.price" 
-										ng-blur="blurfn()" 
-										ng-required="true"/>
+										ng-model="ctrl.customer.days"
+										placeholder="Days" 
+										pattern="[1-9]{1,3}" 
+										ng-required="true" />
 									</div>
 									<div class="form-group">
 										<label for="nationality" >Nationality</label>
@@ -173,10 +167,11 @@
 									<div class="form-group">
 										<input type="number"
 										class="form-control"
-										ng-model="ctrl.customer.days"
-										placeholder="Days" 
-										pattern="[0-9]{1,3}" 
-										ng-required="true" />
+										placeholder="Price" 
+										ng-init="ctrl.customer.price = 0"
+										ng-model="ctrl.customer.price"
+										ng-change="updateprice()";
+										ng-required="true"/>
 									</div>
 									<div class="form-group">
 										<input type="number"
@@ -210,9 +205,79 @@
 							</div>
 			</div>
 		</div>	
+		<div class="row">
+						<div class="col-6 col-sm-4 col-lg-2">
+							<div class="card">
+								<div class="card-body p-3 text-center">
+									<div class="text-right text-success">
+										%
+									</div>
+									<div class="h1 m-0" >
+									<span ng-model="cgstpct"> {{cgstpct}} </span>
+									</div>
+									<div class="text-muted mb-3">CGST</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-6 col-sm-4 col-lg-2">
+							<div class="card">
+								<div class="card-body p-3 text-center">
+									<div class="text-right text-success">
+										&#x20b9;
+									</div>
+									<div class="h1 m-0">
+									<span ng-model="cgstamt"> {{cgstamt}} </span>
+									</div>
+									<div class="text-muted mb-3">CGST</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-6 col-sm-4 col-lg-2">
+							<div class="card">
+								<div class="card-body p-3 text-center">
+									<div class="text-right text-success">
+										%
+									</div>
+									<div class="h1 m-0" ng-model="sgstpct">{{sgstpct}}</div>
+									<div class="text-muted mb-3">SGST</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-6 col-sm-4 col-lg-2">
+							<div class="card">
+								<div class="card-body p-3 text-center">
+									<div class="text-right text-success">
+										&#x20b9;
+									</div>
+									<div class="h1 m-0" ng-model="sgstamt">{{sgstamt}}</div>
+									<div class="text-muted mb-3">SGST</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-6 col-sm-4 col-lg-2">
+							<div class="card">
+								<div class="card-body p-3 text-center">
+									<div class="text-right text-success">
+										&#x20b9;
+									</div>
+									<div class="h1 m-0" ng-model="ppd">{{ppd}}</div>
+									<div class="text-muted mb-3">PRICE per Day</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-6 col-sm-4 col-lg-2">
+							<div class="card">
+								<div class="card-body p-3 text-center">
+									<div class="text-right text-success">
+										&#x20b9;
+									</div>
+									<div class="h1 m-0" ng-model="tp">{{tp}}</div>
+									<div class="text-muted mb-3">TOTAL</div>
+								</div>
+							</div>
+						</div>
+		</div>
 	</div>	
 </form>
-</div>
-</div>
 </body>
 </html>

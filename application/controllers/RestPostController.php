@@ -1,5 +1,4 @@
 <?php
-
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 use Restserver\Libraries\REST_Controller;
@@ -18,7 +17,7 @@ class RestPostController extends REST_Controller {
         $gsttax = array(7500, 2500, 1000);
         $pricepd = ($customer_price/$customer_days);
         for($i = 0; $i < sizeof($gsttax); $i++){
-            if($pricepd > $gsttax[$i]){
+            if($pricepd >= $gsttax[$i]){
                 return $gstp[$i];
             }
         }
@@ -47,7 +46,8 @@ class RestPostController extends REST_Controller {
         //$customer_sgstpct = 
         $customer_cgstpct =  $this->getTax($customer_price, $customer_days);
         $customer_cgstamt = $customer_price*($customer_cgstpct/100); 
-        $result = $this->fm->add_property($property_id, $customer_property, $customer_roomtype, $customer_roomno, $customer_price, $customer_extra, $customer_cgstpct, $customer_cgstamt);
+        $customer_totalprice = ($customer_price+$customer_cgstamt);
+        $result = $this->fm->add_property($property_id, $customer_property, $customer_roomtype, $customer_roomno, $customer_price, $customer_extra, $customer_cgstpct, $customer_cgstamt, $customer_days, $customer_totalprice);
         if ($result === FALSE) {
             $this->response(array('status' => 'failed'));
         } 
@@ -55,7 +55,7 @@ class RestPostController extends REST_Controller {
         if ($result === FALSE) {
             $this->response(array('status' => 'failed'));
         }
-        $result = $this->fm->add_booking(uniqid(), $guest_id, $property_id, $customer_name, $customer_days, $customer_gateway, $customer_contact, $customer_checkIn, $customer_checkOut, $customer_price, $customer_extra);
+        $result = $this->fm->add_booking(uniqid(), $guest_id, $property_id, $customer_name, $customer_gateway, $customer_contact, $customer_checkIn, $customer_checkOut, $customer_extra);
         if ($result === FALSE) {
             $this->response(array('status' => 'failed'));
         } else {

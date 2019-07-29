@@ -34,6 +34,9 @@ class Controller extends CI_Controller{
         return $data;
     }
 
+
+    // Dashboard Tables 
+    
     //show booking table in dashboard
     public function bookingtable(){
         $this->load->view('bookingtable', $this->dashData('booking'));
@@ -48,32 +51,51 @@ class Controller extends CI_Controller{
     public function checkouttable(){
         $this->load->view('checkouttable',$this->dashData('checkout'));
     }
+    //-------------Dashboard Tables-------------//
+
+    // checkout
+    public function checkout(){
+        $roomnum = $this->uri->segment(3);
+        $data["results"] = $this->Countries->checkout($roomnum);
+        $this->load->view('checkout');
+    }
+
+
+    public function listall(){
+        $this->load->view('report');
+    }
 
     private function reportData($selector){
         $data["results"] = $this->Countries->getall($selector);
         return $data;
     }
 
+
+    // Report Tables 
+
     public function upcoming(){
         $this->load->view('upcoming',$this->reportData('upcoming'));
     }
 
     public function ongoing(){
-        $this->load->view('upcoming',$this->reportData('ongoing'));
+        $this->load->view('ongoing',$this->reportData('ongoing'));
     }
 
     public function completed(){
-        $this->load->view('upcoming',$this->reportData('completed'));
+        $this->load->view('completed',$this->reportData('completed'));
     }
 
-    public function listall(){
-        $this->load->view('report');
+    public function tax(){
+        $this->load->view('tax',$this->reportData('tax'));
     }
+
+    //-------------Report Tables-------------//
 
     public function regform(){
         $this->load->view('regform');
     }
 
+    // presenter
     public function presenter() {
         $id = $this->uri->segment(3);
         $data["results"] = $this->Countries->cust($id);
@@ -82,21 +104,10 @@ class Controller extends CI_Controller{
 
 
     
-    public function formPage(){
+    /*public function formPage(){
         $this->load->view('registrationform');
-    }
-
-    public function todayBooking(){
-        $this->load->view('todaybooking');
-    }
-
-    public function todayCheckin(){
-        $this->load->view('todayCheckin');
-    }
-
-    public function todayCheckout(){
-        $this->load->view('todayCheckout');
-    }
+    }*/
+    
 
 }
 

@@ -1,5 +1,5 @@
 <div class="table-responsive">
-	<table id="completed" class="display table table-striped table-hover" cellspacing="0" width="100%">
+	<table id="completed_table" class="display table table-striped table-hover" cellspacing="0" width="100%">
 		<thead>
         <th class="sorting_asc" 
             tabindex="0" 
@@ -71,7 +71,6 @@
 		<tbody>
             <?php
                 if(!$results){
-                    echo 'No Results Found';
                 }
                 else{
                     foreach($results as $data) {
@@ -93,5 +92,5 @@
 </div>
 
 <script>
-    $('#completed').DataTable();
+    $('#completed_table').DataTable();
 </script>

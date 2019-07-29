@@ -1,11 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="myForm">
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<title>Atlantis Lite - Bootstrap 4 Admin Dashboard</title>
 	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
 	<link rel="icon" href="<?php echo base_url();?>assets/img/icon.ico" type="image/x-icon"/>
 	<link rel="stylesheet" href="<?php echo base_url();?>assets/css/sheet.css">
+
+	<!--   Core JS Files   -->
+	<script src="<?php echo base_url();?>assets/js/core/jquery.3.2.1.min.js"></script>
+	<script src='<?php echo base_url(); ?>assets/js/core/angular.min.js'></script>
+
+	<!--   JS scripts Files   -->
+	<script type='text/javascript' src='<?php echo base_url(); ?>assets/js/dropdown.js'></script>
+	<script type='text/javascript' src="<?php echo base_url(); ?>assets/js/service.js"></script>
 
 	<!-- Fonts and icons -->
 	<script src="<?php echo base_url();?>assets/js/plugin/webfont/webfont.min.js"></script>
@@ -25,7 +33,7 @@
 
 </head>
 <body>
-	<div class="wrapper">
+	<div class="wrapper" ng-controller="formValidation as ctrl">
 		<div class="main-header">
 			<!-- Logo Header -->
 			<div class="logo-header" data-background-color="blue">
@@ -325,20 +333,27 @@
 							</div>
 						</div>
 					</div>
-					<ul class="nav nav-primary">
-						<li class="nav-item active" id="dashboard">
+					<ul class="nav nav-primary" ng-init="template='<?php echo site_url('Controller/dashboard') ?>'"ng-model="template">
+
+						<li class="nav-item"  ng-class="dashboard" ng-click="contentChange('<?php echo site_url('Controller/dashboard') ?>','dashboard')">
 							<a>
 								<i class="fas fa-home"></i>
 								<p>Dashboard</p>
 							</a>
 						</li>
-						<li class="nav-item" id = "add">
+						<li class="nav-item" id = "add" ng-class="add" ng-click="contentChange('<?php echo site_url('Controller/regform') ?>','add')">
 							<a>
 								<i class="fas fa-user"></i>
-								<p>Add Customer</p>
+								<p>New Booking</p>
 							</a>
 						</li>
-						<li class="nav-item" id = "reports">
+						<li class="nav-item" ng-class = "checkout" ng-click="contentChange('<?php echo site_url('Controller/checkout') ?>','checkout')">
+							<a>
+								<i class="fas fa-user"></i>
+								<p>Check out</p>
+							</a>
+						</li>
+						<li class="nav-item" ng-class = "reports" ng-click="contentChange('<?php echo site_url('Controller/listall') ?>','reports')">
 							<a>
 								<i class="fas fa-chart-line"></i>
 								<p>Reports</p>
@@ -353,8 +368,9 @@
 		</div>
 		<!-- End Sidebar -->
 
-		<div class="main-panel" ng-app="myForm" >
-			<div class="content" id='content'  ng-controller="formValidation as ctrl">
+		<div class="main-panel" >
+			<div class="content" id='content'   ng-include='template' >
+			<!--ng-include src="template"></ng-include-->
 			</div>
 			<footer class="footer">
 				<div class="container-fluid">
@@ -386,7 +402,6 @@
 		
 	</div>
 	<!--   Core JS Files   -->
-	<script src="<?php echo base_url();?>assets/js/core/jquery.3.2.1.min.js"></script>
 	<script src="<?php echo base_url();?>assets/js/core/popper.min.js"></script>
 	<script src="<?php echo base_url();?>assets/js/core/bootstrap.min.js"></script>
 
@@ -413,7 +428,7 @@
 	<script>
     $(document).ready(function(){
 	
-	$.ajax({
+	/*$.ajax({
 		url: '<?php echo site_url('Controller/dashboard') ?>',
 		dataType: 'html',
 		timeout: 5000, // 5 seconds
@@ -425,6 +440,7 @@
 	$('#dashboard').click(function(){
 		$('#reports').removeClass('active');
 		$('#add').removeClass('active');
+		$('#checkout').removeClass('active');
 		$('#dashboard').addClass('active');
 		$.ajax({
 			url: '<?php echo site_url('Controller/dashboard') ?>',
@@ -439,10 +455,28 @@
 
 	$('#add').click(function(){
 		$('#reports').removeClass('active');
+		$('#checkout').removeClass('active');
 		$('#dashboard').removeClass('active');
 		$('#add').addClass('active');
+		
 		$.ajax({
 			url: '<?php echo site_url('Controller/regform') ?>',
+			dataType: 'html',
+			timeout: 5000, // 5 seconds
+			success: function(html) {
+				$("#content").html(html);
+			}
+		});
+		//$('#content').load('');
+	});
+
+	$('#checkout').click(function(){
+		$('#reports').removeClass('active');
+		$('#dashboard').removeClass('active');
+		$('#add').removeClass('active');
+		$('#checkout').addClass('active');
+		$.ajax({
+			url: '<?php echo site_url('Controller/checkout') ?>',
 			dataType: 'html',
 			timeout: 5000, // 5 seconds
 			success: function(html) {
@@ -455,6 +489,7 @@
 	$('#reports').click(function(){
 		$('#dashboard').removeClass('active');
 		$('#add').removeClass('active');
+		$('#checkout').removeClass('active');
 		$('#reports').addClass('active');
 		$.ajax({
 			url: '<?php echo site_url('Controller/listall') ?>',
@@ -465,7 +500,7 @@
 			}
 		});
 		//$('#content').load('');
-	});
+	});*/
 });
 </script>
 </body>

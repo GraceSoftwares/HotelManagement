@@ -72,7 +72,6 @@
 		<tbody>
             <?php
                 if(!$results){
-                    echo 'No Results Found';
                 }
                 else{
                     foreach($results as $data) {
